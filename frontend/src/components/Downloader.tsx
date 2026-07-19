@@ -96,11 +96,6 @@ export const Downloader: React.FC = () => {
     setVideoData(null);
   };
 
-  const triggerDownload = (fileUrl: string, title: string, type: 'mp3' | 'mp4') => {
-    // Navigate to the stream proxy endpoint which triggers Content-Disposition download attachment
-    const streamUrl = `${API_BASE}/api/stream?url=${encodeURIComponent(fileUrl)}&title=${encodeURIComponent(title)}&type=${type}`;
-    window.open(streamUrl, '_blank');
-  };
 
   return (
     <section style={{
@@ -348,28 +343,32 @@ export const Downloader: React.FC = () => {
               </div>
             )}
 
-            <div style={{ 
+             <div style={{ 
               display: 'flex', 
               flexDirection: 'column', 
               gap: '12px',
               marginTop: '10px'
             }}>
-              <button 
-                onClick={() => triggerDownload(videoData.videoUrl, videoData.title, 'mp4')}
+              <a 
+                href={`${API_BASE}/api/stream?url=${encodeURIComponent(videoData.videoUrl)}&title=${encodeURIComponent(videoData.title)}&type=mp4`}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-brutalist btn-brutalist-primary"
-                style={{ width: '100%' }}
+                style={{ width: '100%', textDecoration: 'none' }}
               >
                 DOWNLOAD VIDEO (MP4) {videoData?.isHD ? 'HD' : ''}
-              </button>
+              </a>
               
               {videoData?.audioUrl && (
-                <button 
-                  onClick={() => triggerDownload(videoData.audioUrl, `${videoData.title}_audio`, 'mp3')}
+                <a 
+                  href={`${API_BASE}/api/stream?url=${encodeURIComponent(videoData.audioUrl)}&title=${encodeURIComponent(videoData.title + '_audio')}&type=mp3`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="btn-brutalist btn-brutalist-secondary"
-                  style={{ width: '100%' }}
+                  style={{ width: '100%', textDecoration: 'none' }}
                 >
                   DOWNLOAD AUDIO (MP3)
-                </button>
+                </a>
               )}
 
               <button 
