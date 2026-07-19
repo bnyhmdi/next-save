@@ -1,0 +1,460 @@
+/* Neo-Brutalist Design System - index.css */
+
+:root {
+  /* Colors */
+  --surface: #f9f9f9;
+  --surface-dim: #dadada;
+  --surface-bright: #f9f9f9;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f3f3f3;
+  --surface-container: #eeeeee;
+  --surface-container-high: #e8e8e8;
+  --surface-container-highest: #e2e2e2;
+  --on-surface: #1b1b1b;
+  --on-surface-variant: #444933;
+  --inverse-surface: #303030;
+  --inverse-on-surface: #f1f1f1;
+  --outline: #747a60;
+  --outline-variant: #c4c9ac;
+  --surface-tint: #506600;
+  
+  --primary: #506600;
+  --on-primary: #ffffff;
+  --primary-container: #ccff00; /* Lime green */
+  --on-primary-container: #5b7300;
+  --inverse-primary: #abd600;
+  
+  --secondary: #95406f;
+  --on-secondary: #ffffff;
+  --secondary-container: #ff99cc; /* Pink */
+  --on-secondary-container: #7b2b59;
+  
+  --tertiary: #5e5d69;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #eeebfa;
+  --on-tertiary-container: #6a6976;
+  
+  --error: #ba1a1a;
+  --on-error: #ffffff;
+  --error-container: #ffdad6;
+  --on-error-container: #93000a;
+  
+  --background: #f9f9f9;
+  --on-background: #1b1b1b;
+  --surface-variant: #e2e2e2;
+  --surface-white: #ffffff;
+  --lavender-deep: #dcd0ff;
+  --black-pure: #000000;
+
+  /* Typography variables */
+  --font-display: 'Archivo Narrow', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Spacing and Borders */
+  --border-width: 4px;
+  --shadow-offset: 6px;
+  --shadow-offset-active: 2px;
+  
+  /* Radii */
+  --rounded-sm: 0.125rem;
+  --rounded-default: 0.25rem;
+  --rounded-md: 0.375rem;
+  --rounded-lg: 0.5rem;
+  --rounded-xl: 0.75rem;
+  --rounded-full: 9999px;
+}
+
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* Global Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--black-pure);
+  background-color: var(--lavender-deep);
+  overflow-x: hidden;
+}
+
+/* Typography styles */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  color: var(--black-pure);
+  letter-spacing: -0.01em;
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+}
+
+.headline-xl {
+  font-family: var(--font-display);
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.headline-lg {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.body-lg {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.body-md {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.label-md {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+}
+
+/* Hard Shadows and Borders */
+.brutalist-border {
+  border: var(--border-width) solid var(--black-pure);
+}
+
+.brutalist-shadow {
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--black-pure);
+}
+
+/* Grid Patterns */
+.blueprint-grid {
+  background-color: var(--lavender-deep);
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.blueprint-grid-white {
+  background-color: var(--surface);
+  background-image: 
+    linear-gradient(rgba(0, 0, 0, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.06) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Buttons */
+.btn-brutalist {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  text-transform: uppercase;
+  padding: 16px 32px;
+  border: var(--border-width) solid var(--black-pure);
+  border-radius: var(--rounded-default);
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+  user-select: none;
+  text-decoration: none;
+}
+
+.btn-brutalist-primary {
+  background-color: var(--primary-container);
+  color: var(--black-pure);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--black-pure);
+}
+
+.btn-brutalist-primary:active {
+  transform: translate(4px, 4px);
+  box-shadow: var(--shadow-offset-active) var(--shadow-offset-active) 0px var(--black-pure);
+}
+
+.btn-brutalist-secondary {
+  background-color: var(--secondary-container);
+  color: var(--black-pure);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--black-pure);
+}
+
+.btn-brutalist-secondary:active {
+  transform: translate(4px, 4px);
+  box-shadow: var(--shadow-offset-active) var(--shadow-offset-active) 0px var(--black-pure);
+}
+
+.btn-brutalist-tertiary {
+  background-color: var(--lavender-deep);
+  color: var(--black-pure);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--black-pure);
+}
+
+.btn-brutalist-tertiary:active {
+  transform: translate(4px, 4px);
+  box-shadow: var(--shadow-offset-active) var(--shadow-offset-active) 0px var(--black-pure);
+}
+
+.btn-brutalist-black {
+  background-color: var(--black-pure);
+  color: var(--surface-white);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--black-pure);
+}
+
+.btn-brutalist-black:active {
+  transform: translate(4px, 4px);
+  box-shadow: var(--shadow-offset-active) var(--shadow-offset-active) 0px var(--surface-white);
+}
+
+/* Badge styles */
+.badge-brutalist {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border: 2px solid var(--black-pure);
+  border-radius: var(--rounded-default);
+  background-color: var(--surface-white);
+  color: var(--black-pure);
+}
+
+/* Layout Utilities */
+.container-desktop {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Card classes */
+.card-brutalist {
+  background-color: var(--surface-white);
+  border: var(--border-width) solid var(--black-pure);
+  border-radius: var(--rounded-default);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--black-pure);
+  overflow: hidden;
+}
+
+.card-header-bar {
+  background-color: var(--surface-container);
+  border-bottom: var(--border-width) solid var(--black-pure);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-content {
+  padding: 24px;
+}
+
+/* Floating Cartoon Elements */
+.cartoon-shape {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(3px 3px 0px #000);
+}
+
+.star-four-point {
+  width: 48px;
+  height: 48px;
+  background-color: var(--tertiary-container);
+  clip-path: polygon(50% 0%, 65% 35%, 100% 50%, 65% 65%, 50% 100%, 35% 65%, 0% 50%, 35% 35%);
+  border: 2px solid var(--black-pure);
+}
+
+/* Sticky stacking cards container */
+.sticky-deck {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.sticky-card {
+  position: sticky;
+  border: var(--border-width) solid var(--black-pure);
+  border-radius: var(--rounded-default);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0px var(--black-pure);
+  transition: transform 0.2s ease;
+}
+
+/* Progressive/Stepped Animation fills */
+.progress-bar-container {
+  height: 24px;
+  background-color: var(--tertiary-container);
+  border: var(--border-width) solid var(--black-pure);
+  border-radius: var(--rounded-default);
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: var(--primary-container);
+  transition: width 0.4s steps(6, end);
+}
+
+/* Animations */
+@keyframes pulse-brutalist {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+.pulse-hover:hover {
+  animation: pulse-brutalist 0.6s infinite ease-in-out;
+}
+
+/* Overlapping Panel Sections */
+.panel-section {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 -12px 30px rgba(0, 0, 0, 0.15); /* Top shadow for card sliding depth */
+  overflow: hidden;
+  background-color: var(--lavender-deep);
+}
+
+/* First section has no top shadow */
+.panel-section:first-of-type {
+  box-shadow: none;
+}
+
+.panel-section-1 {
+  z-index: 1;
+  background-color: var(--lavender-deep);
+  padding: 40px 0 60px 0;
+}
+
+.panel-section-2 {
+  z-index: 2;
+  background-color: var(--lavender-deep);
+  padding: 80px 0;
+}
+
+.panel-section-3 {
+  z-index: 3;
+  background-color: var(--black-pure);
+}
+
+.panel-section-4 {
+  z-index: 4;
+  background-color: var(--surface);
+}
+
+.panel-section-5 {
+  z-index: 5;
+  background-color: var(--black-pure);
+}
+
+/* Sticky stacking behavior for sections when not on mobile */
+@media (min-width: 769px) {
+  .panel-section {
+    position: sticky;
+    top: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+  :root {
+    --shadow-offset: 3px;
+    --shadow-offset-active: 1px;
+    --border-width: 3px;
+  }
+  
+  .display-lg {
+    font-size: 42px;
+  }
+  
+  .headline-xl {
+    font-size: 32px;
+  }
+  
+  .headline-lg {
+    font-size: 24px;
+  }
+  
+  body {
+    font-size: 15px;
+  }
+  
+  .sticky-card {
+    position: relative !important;
+    top: 0 !important;
+  }
+  
+  .panel-section {
+    position: relative !important;
+    top: 0 !important;
+    min-height: auto !important;
+    padding: 60px 0 !important;
+    box-shadow: none !important;
+  }
+  
+  .container-desktop {
+    padding: 0 16px;
+  }
+}
+
+/* Floating particles drift animations */
+@keyframes float-drift-a {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(20px, -25px) rotate(180deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+@keyframes float-drift-b {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(-25px, 20px) rotate(-180deg); }
+  100% { transform: translate(0, 0) rotate(-360deg); }
+}
+
+@keyframes float-drift-c {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  50% { transform: translate(25px, 25px) rotate(120deg); }
+  100% { transform: translate(0, 0) rotate(360deg); }
+}
+
+.particle-item {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  filter: drop-shadow(2.5px 2.5px 0px #000);
+}
