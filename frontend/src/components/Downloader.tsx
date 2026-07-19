@@ -380,6 +380,29 @@ export const Downloader: React.FC = () => {
                 START NEW DOWNLOAD
               </button>
             </div>
+
+            {/* iOS Helper Tooltip */}
+            <div 
+              className="brutalist-border"
+              style={{
+                backgroundColor: 'var(--tertiary-container)',
+                padding: '12px 16px',
+                borderRadius: 'var(--rounded-default)',
+                fontSize: '12px',
+                textAlign: 'left',
+                boxShadow: '3px 3px 0px #000',
+                marginTop: '16px',
+                fontFamily: 'var(--font-mono)',
+                color: 'var(--black-pure)',
+                lineHeight: '1.4'
+              }}
+            >
+              <strong style={{ display: 'block', marginBottom: '4px' }}>💡 Tips iPhone / iOS:</strong>
+              <ul style={{ margin: 0, paddingLeft: '16px' }}>
+                <li>Tekan lama (long press) tombol download di atas, lalu pilih <strong>"Unduh File yang Ditautkan"</strong> (Download Linked File).</li>
+                <li>Atau jika video sudah terlanjur berputar di layar, ketuk tombol <strong>Share/Bagikan</strong> di bagian bawah Safari, lalu pilih <strong>"Simpan ke File"</strong> (Save to Files).</li>
+              </ul>
+            </div>
           </div>
         )}
 
