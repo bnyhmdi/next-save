@@ -385,22 +385,26 @@ export const Downloader: React.FC = () => {
               className="brutalist-border"
               style={{
                 backgroundColor: 'var(--tertiary-container)',
-                padding: '12px 16px',
+                padding: '14px 18px',
                 borderRadius: 'var(--rounded-default)',
-                fontSize: '12px',
+                fontSize: '13px',
                 textAlign: 'left',
-                boxShadow: '3px 3px 0px #000',
-                marginTop: '16px',
+                boxShadow: '4px 4px 0px #000',
+                marginTop: '20px',
                 fontFamily: 'var(--font-mono)',
                 color: 'var(--black-pure)',
-                lineHeight: '1.4'
+                lineHeight: '1.5'
               }}
             >
-              <strong style={{ display: 'block', marginBottom: '4px' }}>💡 Tips iPhone / iOS:</strong>
-              <ul style={{ margin: 0, paddingLeft: '16px' }}>
-                <li>Tekan lama (long press) tombol download di atas, lalu pilih <strong>"Unduh File yang Ditautkan"</strong> (Download Linked File).</li>
-                <li>Atau jika video sudah terlanjur berputar di layar, ketuk tombol <strong>Share/Bagikan</strong> di bagian bawah Safari, lalu pilih <strong>"Simpan ke File"</strong> (Save to Files).</li>
-              </ul>
+              <strong style={{ display: 'block', marginBottom: '8px', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                Tips iPhone / iOS:
+              </strong>
+              <p style={{ margin: '0 0 8px 0' }}>
+                1. Tekan lama (long press) tombol download di atas, lalu pilih <strong>"Unduh File yang Ditautkan"</strong> (Download Linked File).
+              </p>
+              <p style={{ margin: 0 }}>
+                2. Atau jika video sudah terlanjur berputar di layar, ketuk tombol <strong>Bagikan</strong> di bagian bawah Safari, lalu pilih <strong>"Simpan ke File"</strong> (Save to Files).
+              </p>
             </div>
           </div>
         )}
