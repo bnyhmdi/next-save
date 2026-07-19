@@ -85,50 +85,22 @@ app.get('/api/download', async (req, res) => {
  * GET /api/stream?url=https://...&title=myfile
  */
 app.get('/api/stream', async (req, res) => {
-  const { url, title, type } = req.query;
+  const { url } = req.query;
 
   if (!url) {
-    return res.status(400).send('Missing file URL to stream');
+    return res.status(400).send('Missing file URL to redirect');
   }
 
   try {
-    const isMp3 = type === 'mp3';
-    const ext = isMp3 ? '.mp3' : '.mp4';
-    const contentType = isMp3 ? 'audio/mpeg' : 'video/mp4';
-    
-    // Clean filename characters to avoid file save errors
-    // 1. Create a safe ASCII fallback filename
-    const asciiTitle = title 
-      ? title.toString().replace(/[^\x20-\x7E]/g, '').replace(/[/\\?%*:|"<>\s]+/g, '_')
-      : '';
-    const fallbackFilename = `${asciiTitle.slice(0, 50) || (isMp3 ? 'tiktok_audio' : 'tiktok_video')}${ext}`;
-    
-    // 2. Create the full UTF-8 filename supporting emojis and non-latin scripts
-    const utf8Title = title 
-      ? title.toString().replace(/[/\\?%*:|"<>\s]+/g, '_') 
-      : (isMp3 ? 'tiktok_audio' : 'tiktok_video');
-    const utf8Filename = `${utf8Title.slice(0, 50)}${ext}`;
-
-    // Set headers with RFC 5987 compliance for UTF-8 filenames in HTTP headers
-    res.setHeader('Content-Disposition', `attachment; filename="${fallbackFilename}"; filename*=UTF-8''${encodeURIComponent(utf8Filename)}`);
-    res.setHeader('Content-Type', contentType);
-
-    // Fetch the raw media stream from the CDN server and pipe it directly to our Express response
-    const mediaResponse = await axios({
-      method: 'get',
-      url: url.toString(),
-      responseType: 'stream',
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Referer': 'https://www.tikwm.com/'
-      }
-    });
-
-    mediaResponse.data.pipe(res);
+    // Redirect the user's browser directly to the media CDN URL.
+    // This bypasses Vercel's strict 4.5MB serverless response size limit,
+    // preventing file corruption on larger videos by letting the browser download
+    // directly from the source CDN.
+    return res.redirect(302, url.toString());
   } catch (error) {
-    console.error('Streaming error:', error.message);
+    console.error('Redirect error:', error.message);
     if (!res.headersSent) {
-      res.status(500).send('Failed to stream audio/video resource.');
+      res.status(500).send('Failed to redirect to video resource.');
     }
   }
 });
