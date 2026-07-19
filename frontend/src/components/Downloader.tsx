@@ -69,14 +69,20 @@ export const Downloader: React.FC = () => {
           setIsSuccess(true);
         }, 600);
       } else {
-        const errorData = await response.json();
-        setErrorMsg(errorData.error || 'Failed to download video. Please verify the link is active.');
+        let msg = 'Failed to extract video. Please verify the URL.';
+        try {
+          const errorData = await response.json();
+          msg = errorData.error || msg;
+        } catch (e) {
+          msg = `Server Error (${response.status}): The backend returned an invalid response.`;
+        }
+        setErrorMsg(msg);
         setLoading(false);
       }
-    } catch (err) {
+    } catch (err: any) {
       clearInterval(textInterval);
       console.error(err);
-      setErrorMsg('Connection Error: Cannot reach the backend downloader server. Make sure node backend is active.');
+      setErrorMsg(`Connection Error: ${err.message || 'Cannot reach the backend downloader server.'}`);
       setLoading(false);
     }
   };
