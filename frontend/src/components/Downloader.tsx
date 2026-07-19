@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 
+const API_BASE = window.location.hostname === 'localhost' 
+  ? 'http://localhost:5000' 
+  : '';
+
 export const Downloader: React.FC = () => {
   const [url, setUrl] = useState('');
   const [loading, setLoading] = useState(false);
@@ -47,8 +51,8 @@ export const Downloader: React.FC = () => {
     }, 900);
 
     try {
-      // Query the backend server running on port 5000
-      const response = await fetch(`http://localhost:5000/api/download?url=${encodeURIComponent(url.trim())}`);
+      // Query the backend server
+      const response = await fetch(`${API_BASE}/api/download?url=${encodeURIComponent(url.trim())}`);
       
       clearInterval(textInterval);
 
@@ -88,7 +92,7 @@ export const Downloader: React.FC = () => {
 
   const triggerDownload = (fileUrl: string, title: string, type: 'mp3' | 'mp4') => {
     // Navigate to the stream proxy endpoint which triggers Content-Disposition download attachment
-    const streamUrl = `http://localhost:5000/api/stream?url=${encodeURIComponent(fileUrl)}&title=${encodeURIComponent(title)}&type=${type}`;
+    const streamUrl = `${API_BASE}/api/stream?url=${encodeURIComponent(fileUrl)}&title=${encodeURIComponent(title)}&type=${type}`;
     window.open(streamUrl, '_blank');
   };
 
